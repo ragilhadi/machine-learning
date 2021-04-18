@@ -1,0 +1,78 @@
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import seaborn as sb
+import tensorflow as tf
+from tensorflow import keras
+import numpy as np
+import cv2 as cv
+
+
+
+==========================CONFUSION MATRIX==========================
+from sklearn.metrics import confusion_matrix
+import seaborn as sb
+y_predicted = model.predict(x_test)
+cm = confusion_matrix(y_test,y_predicted)
+plt.figure(figsize = (10,7))
+sb.heatmap(cm, annot=True)
+plt.xlabel('Predicted')
+plt.ylabel('Truth')
+
+
+
+===========================ANN=======================================
+model = keras.Sequential([
+    keras.layers.Flatten(input_shape=(28,28)),
+    keras.layers.Dense(100, activation='relu'),
+    keras.layers.Dense(10, activation='sigmoid')
+])
+
+model.compile(optimizer='adam',
+             loss='sparse_categorical_crossentropy',
+             metrics=['accuracy'])
+
+model.fit(x_train, y_train, epochs=10)
+
+model.evaluate(x_test, y_test)
+
+
+
+=====================Train Test Split===================================
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.25)
+
+
+
+=========================LINEAR REGRESSION=============================
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(x_train,y_train)
+model.score(x_test,y_test)
+
+
+
+
+========================LOGISTIC REGRESSION=============================
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(x_train,y_train)
+model.score(x_test,y_test)
+
+
+
+
+========================DECISION TREE=============================
+from sklearn.tree import DecisionTreeClassifier
+model = DecisionTreeClassifier()
+model.fit(x_train,y_train)
+model.score(x_test,y_test)
+
+
+========================RANDOM FOREST==================================
+from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier()
+model.fit(x_train,y_train)
+model.score(x_test,y_test)
+
+
+
